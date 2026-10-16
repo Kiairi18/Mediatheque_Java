@@ -1,10 +1,12 @@
 package mediatheque;
 
+import java.util.Objects;
+
 public class EmpruntManager {
     private final Catalogue<Document> catalogue; // COMPOSITION
 
     public EmpruntManager(Catalogue<Document> catalogue) {
-        this.catalogue = catalogue;
+        this.catalogue = Objects.requireNonNull(catalogue, "Le catalogue ne peut pas être null");
     }
 
     public void emprunter(String titre) throws MediathequeException {

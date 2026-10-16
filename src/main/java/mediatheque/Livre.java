@@ -1,5 +1,7 @@
 package mediatheque;
 
+import java.util.Objects;
+
 public class Livre extends Document implements Empruntable {
     private final String auteur;
     private final int nbPages;
@@ -7,7 +9,13 @@ public class Livre extends Document implements Empruntable {
 
     public Livre(String titre, int annee, String auteur, int nbPages) {
         super(titre, annee);
-        this.auteur = auteur;
+        this.auteur = Objects.requireNonNull(auteur, "L'auteur ne peut pas être null");
+        if (auteur.isBlank()) {
+            throw new IllegalArgumentException("L'auteur ne peut pas être vide");
+        }
+        if (nbPages <= 0) {
+            throw new IllegalArgumentException("Le nombre de pages doit être positif");
+        }
         this.nbPages = nbPages;
     }
 

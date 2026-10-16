@@ -32,4 +32,22 @@ class CatalogueTest {
         c.ajouter(new Dvd("Inception", 2010, 148));
         assertTrue(c.rechercherParTitre("INCEPTION").isPresent());
     }
+
+    @Test void recherche_ignore_les_espaces_autour_du_titre() {
+        Catalogue<Document> c = new Catalogue<>();
+        c.ajouter(new Dvd("Inception", 2010, 148));
+        assertTrue(c.rechercherParTitre("  Inception  ").isPresent());
+    }
+
+    @Test void refuse_un_document_null() {
+        Catalogue<Document> c = new Catalogue<>();
+        assertThrows(NullPointerException.class, () -> c.ajouter(null));
+    }
+
+    @Test void refuse_un_livre_invalide() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Livre("   ", 2020, "Auteur", 100));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Livre("Titre", 2020, "Auteur", 0));
+    }
 }

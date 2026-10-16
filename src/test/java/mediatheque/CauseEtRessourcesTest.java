@@ -29,5 +29,6 @@ class CauseEtRessourcesTest {
         });
         assertTrue(rapport.estFerme());
         assertEquals(1, rapport.getTitres().size());
+        assertThrows(IllegalStateException.class, () -> rapport.enregistrer("Dune"));
     }
 }

@@ -6,6 +6,9 @@ public class Dvd extends Document implements Empruntable {
 
     public Dvd(String titre, int annee, int dureeMin) {
         super(titre, annee);
+        if (dureeMin <= 0) {
+            throw new IllegalArgumentException("La durée doit être positive");
+        }
         this.dureeMin = dureeMin;
     }
 

@@ -5,6 +5,9 @@ public class Revue extends Document {
 
     public Revue(String titre, int annee, int numero) {
         super(titre, annee);
+        if (numero <= 0) {
+            throw new IllegalArgumentException("Le numéro doit être positif");
+        }
         this.numero = numero;
     }
 
